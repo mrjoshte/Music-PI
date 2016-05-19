@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>Music Admin</title>
+	<meta charset="utf-8">
+	<link rel="icon" type="image/png" href="./images/favicon.ico">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/admin.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
+	<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+	<script src="js/redirect.js"></script>
+	<script src="js/admin.js"></script>
+</head>
+<body>
+	<nav class="navbar navbar-light bg-faded">
+		<h1><img id="headerImage" src="./images/ms-image.png" height="75">Music Admin Page<small><a onclick="redirect()" href="javascript:void(0);">Now Playing</a></small></h1>
+		<div style="float: right"><a href="chgP">Change password</a></div>
+	</nav>
+	<div class="container-full">
+		<div class="col-md-offset-1 col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h2>Spotify configurations</h2>
+					<h4>Change Spotify username or password</h4>
+					<div id="usrResult"></div>
+					<div class="form-group">
+						<label>Username</label>
+						<input type="text" id="username" class="form-control">	
+					</div>
+					<div class="form-group">
+						<label>Password</label>
+						<input type="password" id="password" class="form-control">
+					</div>
+					<button type="button" id="chSpotUP" class="btn btn-primary">Submit</button>
+					<h4>Change Spotify playlist</h4>
+					<div class="form-group">
+						<label>Playlist</label>
+						<input type="text" id="playlist" class="form-control">
+					</div>
+					<button type="button" id="chSpotPlay" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-4">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h2>Spotify aliases</h2>
+					<h4>Update aliases</h4>
+					<div id="aliases" class="table-responsive"></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-3">
+			<div class="panel panel-default">
+				<div class="panel-body">
+					<h2>Spotify play schedule</h2>
+					<h4 id="daily">Change daily play schedule</h4>
+					<div id="monday">Monday		</div>
+					<div id="tuesday">Tuesday	</div>
+					<div id="wednesday">Wednesday	</div>
+					<div id="thursday">Thursday	</div>
+					<div id="friday">Friday		</div>
+					<h4>Schedule one time even</h4>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
