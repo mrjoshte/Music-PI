@@ -12,7 +12,7 @@ $(document).ready(function()
 	{
 		setAliases();
 	});
-	$("#daily").ready(function()
+	$("#schedule").ready(function()
 	{
 		setDropdowns();
 	});
@@ -51,7 +51,7 @@ function setAliases()
 		keys = Object.keys(data);
 		for (var i = 0; i < keys.length; i++)
 		{
-			table += "<tr><td>" + keys[i] + "</td><td>" + data[keys[i]] + "</td><td><button type='button' class='btn btn-danger' id='" + keys[i] + "'>Remove</button></td></tr>";
+			table += "<tr><td>" + keys[i] + "</td><td>" + data[keys[i]] + "</td><td><button type='button' class='btn btn-danger' onclick='removeAlias(\"" +  keys[i] + "\")'>Remove</button></td></tr>";
 		}
 
 		table += "<tr><td><input type='text' id='actual'></td><td><input type='text' id='alias'></td><td><button type='button' class='btn btn-success' id='addAlias'>Add</button></td></tr>";
@@ -65,14 +65,17 @@ function setDropdowns()
 {
 	$.get("php/schedule.php", function(data)
 	{
-		var current = data;
-	
-		days = ["monday", "tuesday", "wednesday", "thursday", "friday"];
+		current = data;
+
+		table = "<table class='table'>"; 		
+
+		days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 		for (i = 0; i < 5; i++)
 		{
+			table += "<tr><td>" + days[i] + "</td>";
 			cStart = current[i]["start"].split(" ")[0];
 			cEnd = current[i]["end"].split(" ")[0];
-			select = "Start:<select id='" + days[i] + "Start'>";
+			select = "<td>Start: <select id='" + days[i] + "Start'>";
 			for (j = 1; j < 13; j++)
 			{
 				if (cStart == j)
@@ -84,9 +87,9 @@ function setDropdowns()
 					select += "<option value='" + j + "'>" + j + ":00</option>";
 				}
 			}
-			$("#" + days[i]).append(select + "</select>");
+			table += select + "</select><select><option value='AM'>AM</option><option value='PM'>PM</option></select></td>";
 
-			select = "End:<select id='" + days[i] + "End'>";
+			select = "<td>End: <select id='" + days[i] + "End'>";
 			for (j = 1; j < 13; j++)
 			{
 				if (cEnd == j)
@@ -98,9 +101,10 @@ function setDropdowns()
 					select += "<option value='" + j + "'>" + j + ":00</option>";
 				}
 			}
-			$("#" + days[i]).append(select + "</select>\n");
-			$("#" + days[i]).append("<select><option value='AM'>AM</option><option value='PM'>PM</option></select>");
+			table += select + "</select><select><option value='AM'>AM</option><option value='PM'>PM</option></select></td></tr>";
 		}
+		table += "</table>";
+		$("#schedule").append(table);
 	}, "json");
 }
 
@@ -126,4 +130,9 @@ function updatePlaylist()
 	});
 	$("#playlist").val("");
 	setPlaylist();
+}
+
+function removeAlias(key)
+{
+	console.log(key);
 }

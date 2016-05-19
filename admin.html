@@ -14,14 +14,14 @@
 </head>
 <body>
 	<nav class="navbar navbar-light bg-faded">
-		<h1><img id="headerImage" src="./images/ms-image.png" height="75">Music Admin Page<small><a onclick="redirect()" href="javascript:void(0);">Now Playing</a></small></h1>
+		<h1><img id="headerImage" src="./images/ms-image.png" height="75">Music Admin Page <small><a onclick="redirect()" href="javascript:void(0);">Now Playing</a></small></h1>
 		<div style="float: right"><a href="chgP">Change password</a></div>
 	</nav>
 	<div class="container-full">
 		<div class="col-md-offset-1 col-md-3">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<h2>Spotify configurations</h2>
+					<h2>Spotify Configurations</h2>
 					<h4>Change Spotify username or password</h4>
 					<div id="usrResult"></div>
 					<div class="form-group">
@@ -45,7 +45,7 @@
 		<div class="col-md-4">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<h2>Spotify aliases</h2>
+					<h2>Spotify Aliases</h2>
 					<h4>Update aliases</h4>
 					<div id="aliases" class="table-responsive"></div>
 				</div>
@@ -54,14 +54,11 @@
 		<div class="col-md-3">
 			<div class="panel panel-default">
 				<div class="panel-body">
-					<h2>Spotify play schedule</h2>
+					<h2>Spotify Play Schedule</h2>
 					<h4 id="daily">Change daily play schedule</h4>
-					<div id="monday">Monday		</div>
-					<div id="tuesday">Tuesday	</div>
-					<div id="wednesday">Wednesday	</div>
-					<div id="thursday">Thursday	</div>
-					<div id="friday">Friday		</div>
+					<div id="schedule" class="table-responsive"></div>
 					<h4>Schedule one time even</h4>
+					<div id="oneTime"><div>
 				</div>
 			</div>
 		</div>
