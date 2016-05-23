@@ -13,7 +13,7 @@
 		$aliases[$alias[0]] = $alias[1];
 	}
 
-	unset($aliases[$_POST["key"]);
+	unset($aliases[$_POST["key"]]);
 
 	$back = [];
 	$i = 0;

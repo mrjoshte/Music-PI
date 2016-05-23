@@ -24,6 +24,10 @@ $(document).ready(function()
 	{
 		updatePlaylist();
 	});
+	$("#addAlias").click(function()
+	{
+		addAlias();
+	});
 });
 
 function setUsername()
@@ -46,15 +50,15 @@ function setAliases()
 {
 	$.get("/php/alias.php", function(data)
 	{
-		table = "<table class='table'>";
+		table = "<table class='table' id='aliases'>";
 			
 		keys = Object.keys(data);
 		for (var i = 0; i < keys.length; i++)
 		{
-			table += "<tr><td>" + keys[i] + "</td><td>" + data[keys[i]] + "</td><td><button type='button' class='btn btn-danger' onclick='removeAlias(\"" +  keys[i] + "\")'>Remove</button></td></tr>";
+			table += "<tr id='" + i + "'><td>" + keys[i] + "</td><td>" + data[keys[i]] + "</td><td><button type='button' class='btn btn-danger' onclick='removeAlias(\"" +  keys[i] + "\"," + i + ")'>Remove</button></td></tr>";
 		}
 
-		table += "<tr><td><input type='text' id='actual'></td><td><input type='text' id='alias'></td><td><button type='button' class='btn btn-success' id='addAlias'>Add</button></td></tr>";
+		table += "<tr id='newAlias'><td><input type='text' id='actual'></td><td><input type='text' id='alias'></td><td><button type='button' class='btn btn-success' id='addAlias'>Add</button></td></tr>";
 
 		table += "</table>";
 		$("#aliases").html(table);
@@ -87,7 +91,9 @@ function setDropdowns()
 					select += "<option value='" + j + "'>" + j + ":00</option>";
 				}
 			}
-			table += select + "</select><select><option value='AM'>AM</option><option value='PM'>PM</option></select></td>";
+			table += select + "</select><select>";
+			table += (current[i]["start"].split(" ")[1] === "am") ? "<option selected='selected' value='AM'>AM</option><option" : "<option value='AM'>AM</option><option selected='selected'";
+			table += " value='PM'>PM</option></select></td>";
 
 			select = "<td>End: <select id='" + days[i] + "End'>";
 			for (j = 1; j < 13; j++)
@@ -101,7 +107,10 @@ function setDropdowns()
 					select += "<option value='" + j + "'>" + j + ":00</option>";
 				}
 			}
-			table += select + "</select><select><option value='AM'>AM</option><option value='PM'>PM</option></select></td></tr>";
+			table += select + "</select><select>";
+			table += (current[i]["end"].split(" ")[1] === "am") ? "<option selected='selected' value='AM'>AM</option><option" : "<option value='AM'>AM</option><option selected='selected'";
+			table += " value='PM'>PM</option></select></td></tr>";
+
 		}
 		table += "</table>";
 		$("#schedule").append(table);
@@ -118,7 +127,7 @@ function updateSpotify()
 	});
 	$("#username").val("");
 	$("#password").val("");
-	setUsername();
+	$("#username").attr("placeholder", user);
 }
 
 function updatePlaylist()
@@ -129,10 +138,23 @@ function updatePlaylist()
 		console.log(data);
 	});
 	$("#playlist").val("");
-	setPlaylist();
+	$("#playlist").attr("placeholder", playlist);
 }
 
-function removeAlias(key)
+function removeAlias(key, i)
 {
-	console.log(key);
+	$.post("php/removeAlias.php", {key: key});
+	$("#" + i + "").remove();
+}
+
+function addAlias()
+{
+	var actual = $("#actual");
+	var alias = $("#alias");
+	$.post("php/addAlias.php", {actual: actual, alias: alias}, function(data)
+	{
+		newId = data - 1;
+		newRow = "<tr id='" + newId + "'><td>" + actual + "</td><td>" + alias + "</td><td><button type='button' class='btn btn-danger' onclick='removeAlias(\"" + actual + "\"," + newId + ")'>Remove</button></td></tr>";
+		$("#newAlias").insertBefore(newRow);
+	});
 }
