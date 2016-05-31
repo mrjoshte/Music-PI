@@ -1,18 +1,20 @@
 <?php
-	ierror_reporting(E_ALL | E_WARNING | E_NOTICE);
+	error_reporting(E_ALL | E_WARNING | E_NOTICE);
 	ini_set('display_errors', TRUE);
 
 	$lines = file("/root/spotifynames");
 
-	$aliases = [];
+	$aliases = str_replace("\n", "", $lines);
 	
 	$pieces = array($_POST["actual"], $_POST["alias"]);
 	$newEntry = implode(":", $pieces);
 
-	array_push($lines, $newEntry);
+	array_push($aliases, $newEntry);
+
+	$writeBack = implode("\n", $aliases);
 
 	$myfile = fopen("/root/spotifynames", "w") or die("Unable to open file");
-	fwrite($myfile, $lines);
+	fwrite($myfile, $writeBack);
 	fclose($myfile);	
 
 	echo count($lines);

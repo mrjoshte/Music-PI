@@ -6,6 +6,8 @@
 
 	$aliases = [];
 	
+	$key = "bob";
+
 	foreach ($lines as $line_num => $line)
 	{
 		$line = str_replace("\n","",$line);
