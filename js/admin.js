@@ -73,10 +73,10 @@ function setDropdowns()
 		for (i = 0; i < 5; i++)
 		{
 			table += "<tr><td>" + days[i] + "</td>";
-			cStart = current[i]["start"].split(" ")[0];
-			cEnd = current[i]["end"].split(" ")[0];
+			cStart = current[i]["start"];
+			cEnd = current[i]["end"];
 			select = "<td>Start: <select id='" + days[i] + "Start'>";
-			for (j = 1; j < 13; j++)
+			for (j = 0; j < 24; j++)
 			{
 				if (cStart == j)
 				{
@@ -87,12 +87,13 @@ function setDropdowns()
 					select += "<option value='" + j + "'>" + j + ":00</option>";
 				}
 			}
-			table += select + "</select><select>";
-			table += (current[i]["start"].split(" ")[1] === "am") ? "<option selected='selected' value='AM'>AM</option><option" : "<option value='AM'>AM</option><option selected='selected'";
-			table += " value='PM'>PM</option></select></td>";
+			table += select + "</select></td>";
+//			table += select + "</select><select>";
+//			table += (current[i]["start"].split(" ")[1] === "am") ? "<option selected='selected' value='AM'>AM</option><option" : "<option value='AM'>AM</option><option selected='selected'";
+//			table += " value='PM'>PM</option></select></td>";
 
 			select = "<td>End: <select id='" + days[i] + "End'>";
-			for (j = 1; j < 13; j++)
+			for (j = 0; j < 24; j++)
 			{
 				if (cEnd == j)
 				{
@@ -103,9 +104,10 @@ function setDropdowns()
 					select += "<option value='" + j + "'>" + j + ":00</option>";
 				}
 			}
-			table += select + "</select><select>";
-			table += (current[i]["end"].split(" ")[1] === "am") ? "<option selected='selected' value='AM'>AM</option><option" : "<option value='AM'>AM</option><option selected='selected'";
-			table += " value='PM'>PM</option></select></td></tr>";
+			table += select + "</select></td></tr>";
+//			table += select + "</select><select>";
+//			table += (current[i]["end"].split(" ")[1] === "am") ? "<option selected='selected' value='AM'>AM</option><option" : "<option value='AM'>AM</option><option selected='selected'";
+//			table += " value='PM'>PM</option></select></td></tr>";
 
 		}
 		table += "</table>";
@@ -157,4 +159,10 @@ function addAlias()
 function updateSchedule()
 {
 	console.log("hello");
+	var 
+	days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
+	for (i = 0; i < 5; i++)
+	{
+		
+	}
 }
