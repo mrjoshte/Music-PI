@@ -24,6 +24,10 @@ $(document).ready(function()
 	{
 		updatePlaylist();
 	});
+	$("#updateSch").click(function()
+	{
+		updateSchedule();
+	});
 });
 
 function setUsername()
@@ -113,10 +117,6 @@ function setDropdowns()
 		table += "</table>";
 		$("#schedule").append(table);
 	}, "json");
-	$("#updateSch").click(function()
-	{
-		updateSchedule();
-	});
 }
 
 function updateSpotify()
@@ -158,11 +158,21 @@ function addAlias()
 
 function updateSchedule()
 {
-	console.log("hello");
-	var 
+	var times = new Array(5);
 	days = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"];
 	for (i = 0; i < 5; i++)
 	{
-		
+		times[i] = new Array(2);
+		times[i][0] = $("#" + days[i] + "Start").val();
+		times[i][1] = $("#" + days[i] + "End").val();
 	}
+	$.post("php/updateSchedule.php", {data : JSON.stringify(times)}, function(data)
+	{
+		console.log(data);
+	});
+}
+
+function oneTime()
+{
+	
 }

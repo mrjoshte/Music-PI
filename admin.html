@@ -18,7 +18,7 @@
 		<div style="float: right"><a href="chgP">Change password</a></div>
 	</nav>
 	<div class="container-full">
-		<div class="col-md-offset-1 col-md-3">
+		<div class="col-lg-offset-1 col-lg-3">
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<h2>Spotify Configurations</h2>
@@ -42,7 +42,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-4">
+		<div class="col-lg-4">
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<h2>Spotify Aliases</h2>
@@ -51,15 +51,34 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-3">
+		<div class="col-lg-3">
 			<div class="panel panel-default">
 				<div class="panel-body">
 					<h2>Spotify Play Schedule</h2>
 					<h4 id="daily">Change daily play schedule</h4>
 					<div id="schedule" class="table-responsive"></div>
 					<button type="button" id="updateSch" class="btn btn-primary">Submit</button>
-					<h4>Schedule one time even</h4>
-					<div id="oneTime"></div>
+					<h4>Schedule one time event</h4>
+					<div id="oneTime" style="table-layout:fixed" class="table-responsive">
+						<table>
+						<form id="oneTimeStart">
+							<td>Start:
+								<label class="radio-inline">
+									<input type="radio" value="now" name="optradio">Now
+								</label>
+							</td>
+							<td>
+								<label class="radio-inline">
+									<input type="radio" value="later" name="optradio">At:
+									<input type="text" id="later"/>
+								</label>
+							</td>
+						</form>
+						<td>
+							End:<input type="text" id="endTime"/>
+						</td>
+						</table>
+					</div>
 					<button type="button" id="oneTime" class="btn btn-primary">Submit</button>
 				</div>
 			</div>

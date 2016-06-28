@@ -10,7 +10,7 @@
 		{
 			$tmp = explode(" ", $lines[$line_num + 2]);
 			$username = $tmp[2];
-			$tmp = explode(" ", $lines[$line_num +3]);
+			$tmp = explode(" ", $lines[$line_num + 3]);
 			$length = strlen($tmp[2]);
 			break;
 		}
