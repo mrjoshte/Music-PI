@@ -46,5 +46,7 @@
 	fwrite($myfile, $writeback);
 	fclose($myfile);
 
+	exec("/root/chCron");
+
 	echo "updated";	
 ?>

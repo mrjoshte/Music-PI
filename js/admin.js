@@ -28,6 +28,10 @@ $(document).ready(function()
 	{
 		updateSchedule();
 	});
+	$("#oneTime").click(function()
+	{
+		oneTime();
+	});
 });
 
 function setUsername()
