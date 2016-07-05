@@ -32,5 +32,9 @@
 	fwrite($myfile, $writeBack);
 	fclose($myfile);
 
+	exec("/root/killMopidy");
+	sleep(20);
+	exec("/root/startMopidy");
+
 	echo "updated";
 ?>

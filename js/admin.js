@@ -178,5 +178,22 @@ function updateSchedule()
 
 function oneTime()
 {
-	
+	var endTime = $("#endTime").val();
+	endTime = endTime.trim();
+	if (endTime.length != 0)
+	{
+		var startAt = $("input[name=optradio]:checked").val();
+		if (startAt === "now")
+		{
+			$.post("startSpotify.php", {end : endTime});
+		}
+		if (startAt === "later")
+		{
+			var startTime = $("#later").val();
+			if (startTime.length != 0)
+			{
+				$.post("startLater.php", {start : startTime, end : endTime});
+			}
+		}
+	}
 }
