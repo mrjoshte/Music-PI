@@ -1,6 +1,11 @@
 <?php
-	error_reporting(E_ALL | E_WARNING | E_NOTICE);
-	ini_set('display_errors', TRUE);
+	session_start();
+
+	if (!isset($_SESSION['loggedIn']))
+	{
+		header("Location: /login");
+		exit();
+	}
 
 	// Get all lines of the config file into an array
 	$contents = file_get_contents("/root/.config/mopidy/mopidy.conf");
@@ -28,13 +33,13 @@
 	$writeBack = implode("\n", $lines);
 
 	// Ready the file to be written to
-	$myfile = fopen("/root/mopidy.conf", "w") or die("Unable to open file");
+	$myfile = fopen("/root/.config/mopidy/mopidy.conf", "w") or die("Unable to open file");
 	fwrite($myfile, $writeBack);
 	fclose($myfile);
 
 	exec("/root/killMopidy");
-	sleep(20);
-	exec("/root/startMopidy");
+	sleep(10);
+	exec("/root/startMopidy > /dev/null 2>&1");
 
 	echo "updated";
 ?>

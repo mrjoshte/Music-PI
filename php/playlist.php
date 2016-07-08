@@ -1,8 +1,13 @@
 <?php
-	error_reporting(E_ALL | E_WARNING | E_NOTICE);
-	ini_set('display_errors', TRUE);
-	
-	$lines = file("/root/randomshuffle.sh");
+	session_start();
+
+	if (!isset($_SESSION['loggedIn']))
+	{
+		header("Location: /login");
+		exit();
+	}
+
+	$lines = file("/etc/init.d/randomshuffle.sh");
 
 	foreach ($lines as $line_num => $line)
 	{

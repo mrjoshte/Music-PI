@@ -1,0 +1,19 @@
+body {
+    background-color: #245580;
+}
+
+.navbar {
+    background-color: white;
+    padding-left: 30px;
+    padding-bottom: 10px;
+}
+
+#loginContainer {
+    position: relative;
+    width: 300px;
+    margin-left: 42%;
+}
+
+#headerImage {
+    padding-right: 20px;
+}
